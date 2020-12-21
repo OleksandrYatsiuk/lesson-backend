@@ -1,7 +1,9 @@
+import { Document } from "mongoose";
 import { Course } from "./courses.interface";
 import { User } from "./users.interface";
 
-export interface PaymentData{
+
+export interface PaymentData extends Document {
     readonly id: string;
     readonly _id: string;
     phone?: string;

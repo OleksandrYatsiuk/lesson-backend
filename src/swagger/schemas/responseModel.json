@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "required": ["code", "status", "message"],
+  "properties": {
+    "code": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string",
+      "example": "Success"
+    },
+    "message": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "get": {
+    "summary": "Lesson Overview",
+    "security": [],
+    "tags": ["Lessons"],
+    "operationId": "lessonOverview",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "description": "Lesson id",
+        "required": true,
+        "schema": {
+          "$ref": "../../schemas/id.json"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "$ref": "../../schemas/lessons.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "401 Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status404.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "delete": {
+    "summary": "Remove Lesson",
+    "description": "Allowed roles: Administrator",
+    "tags": ["Lessons"],
+    "operationId": "removeLessons",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "description": "Lesson id",
+        "required": true,
+        "schema": {
+          "$ref": "../../schemas/id.json"
+        }
+      }
+    ],
+    "responses": {
+      "204": {
+        "description": "No Content",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status204.json"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "401 Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status403.json"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status404.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "patch": {
+    "summary": "Edit Lesson",
+    "description": "Allowed roles: Administrator",
+    "tags": ["Lessons"],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "description": "Lesson id",
+        "required": true,
+        "schema": {
+          "$ref": "../../schemas/id.json"
+        }
+      }
+    ],
+    "operationId": "editLesson",
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "$ref": "../../schemas/lessons.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status422.json"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../../schemas/lessons.json"
+          }
+        }
+      }
+    }
+  }
+}

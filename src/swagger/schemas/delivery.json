@@ -1,0 +1,106 @@
+{
+  "type": "object",
+  "required": ["firstName", "phone", "email", "amount", "payment", "pizzaIds"],
+  "properties": {
+    "id": {
+      "$ref": "id.json"
+    },
+    "firstName": {
+      "type": "string",
+      "example": "Oleksandr"
+    },
+    "phone": {
+      "type": "integer",
+      "example": 380989379992
+    },
+    "email": {
+      "type": "string",
+      "example": "test@gmail.com"
+    },
+    "userId": {
+      "type": "string",
+      "example": "5e8b2adb9e2aeb0024bf7627"
+    },
+    "shop": {
+      "type": "string",
+      "example": "5e4d6f4ad219a81e87b87d34"
+    },
+    "pizzaIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "5e4d6f4ad219a81e87b87d34"
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "coupon": {
+          "type": "string",
+          "example": "asd231"
+        },
+        "remainder": {
+          "type": "string",
+          "example": "250"
+        },
+        "type": {
+          "type": "integer",
+          "example": 1,
+          "enum": [1, 2],
+          "description":"1 - Cash, 2 - Card"
+        }
+      }
+    },
+    "amount": {
+      "type": "integer",
+      "example": 100500
+    },
+    "date": {
+      "type": "object",
+      "required": ["date", "time"],
+      "properties": {
+        "date": {
+          "type": "string",
+          "example": "2020-04-11"
+        },
+        "time": {
+          "type": "number",
+          "example": "21:30"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "example": "Street"
+        },
+        "house": {
+          "type": "number",
+          "example": 14
+        },
+        "flat": {
+          "type": "number",
+          "example": 1
+        },
+        "entrance": {
+          "type": "string",
+          "example": "1A"
+        },
+        "code": {
+          "type": "number",
+          "example": 1111
+        },
+        "floor": {
+          "type": "number",
+          "example": 5
+        }
+      }
+    },
+    "comment": {
+      "type": "string",
+      "example": "Some comment"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "address": {
+            "type": "string",
+            "example": "Danyla Shcherbakivskoho St, 4, Kyiv, Ukraine, 03190"
+        },
+        "lat": {
+            "type": "number",
+            "example": 30.456548
+        },
+        "lng": {
+            "type": "number",
+            "example": 50.545644
+        },
+        "label": {
+            "type": "string",
+            "example": "Domino`s Pizza"
+        },
+        "draggable": {
+            "type": "boolean",
+            "example": false
+        }
+    }
+}

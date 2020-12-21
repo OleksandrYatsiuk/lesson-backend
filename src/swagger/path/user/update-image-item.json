@@ -1,0 +1,74 @@
+{
+  "post": {
+    "summary": "Update profile image",
+    "tags": [
+      "User"
+    ],
+    "operationId": "userUpdateImage",
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "allOf": [
+                        {
+                          "$ref": "../../schemas/user.json"
+                        },
+                        {
+                          "$ref": "../../schemas/time.json"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status422.json"
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

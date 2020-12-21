@@ -1,0 +1,33 @@
+{
+    "get": {
+        "summary": "Get config",
+        "security": [],
+        "tags": [
+            "AnyBody"
+        ],
+        "operationId": "getConfig",
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "../../schemas/status200.json"
+                                },
+                                {
+                                    "properties": {
+                                        "result": {
+                                            "$ref": "../../schemas/config.json"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "id.json"
+        },
+        "name": {
+          "type": "string",
+          "example": "Пепероні Блюз"
+        },
+        "category": {
+          "type": "string",
+          "example": "Класичні",
+          "enum": [
+            "Краща ціна",
+            "Класичні",
+            "Фірмові",
+            "Легенди",
+            "Преміум"
+          ]
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "5e8b2adb9e2aeb0024bf7627"
+          }
+        },
+        "weight": {
+          "type": "object",
+          "properties": {
+            "small": {
+              "type": "number",
+              "example": 200
+            },
+            "middle": {
+              "type": "number",
+              "example": 345
+            },
+            "big": {
+              "type": "number",
+              "example": 675.5
+            }
+          }
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "small": {
+              "type": "number",
+              "example": 99.99
+            },
+            "middle": {
+              "type": "number",
+              "example": 129.99
+            },
+            "big": {
+              "type": "number",
+              "example": 200.99
+            }
+          }
+        },
+        "image": {
+          "type": "string",
+          "example": "https://example.com/image.png",
+          "nullable": true,
+          "readOnly": true
+        }
+      }
+    },
+    {
+      "$ref": "time.json"
+    }
+  ]
+}

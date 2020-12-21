@@ -1,0 +1,61 @@
+{
+  "delete": {
+    "summary": "Delete User",
+    "description": "Allowed roles: Administrator",
+    "tags": ["UserManagement"],
+    "operationId": "deleteUser",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "description": "User id",
+        "required": true,
+        "schema": {
+          "$ref": "../../schemas/id.json"
+        }
+      }
+    ],
+    "responses": {
+      "204": {
+        "description": "No Content",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status204.json"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status403.json"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status404.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

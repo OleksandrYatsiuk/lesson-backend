@@ -1,0 +1,21 @@
+{
+  "title": "404 Not Found",
+  "properties": {
+    "code": {
+      "type": "integer",
+      "example": 404
+    },
+    "status": {
+      "type": "string",
+      "example": "Error"
+    },
+    "message": {
+      "type": "string",
+      "example": "Not Found"
+    },
+    "result": {
+      "type": "string",
+      "example": "Item was not founded."
+    }
+  }
+}

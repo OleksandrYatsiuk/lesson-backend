@@ -1,0 +1,47 @@
+{
+  "post": {
+    "security": [],
+    "summary": "Send new access token for email",
+    "tags": [
+      "AnyBody"
+    ],
+    "operationId": "resendVerifyEmail",
+    "responses": {
+      "204": {
+        "description": "No Content",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status204.json"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status422.json"
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "example": "test@test.com"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

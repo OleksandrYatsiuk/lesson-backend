@@ -1,0 +1,46 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "required": ["name", "courseId"],
+
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "5e8b2adb9e2aeb0024bf7627",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "example": "Курс"
+        },
+        "context": {
+          "type": "string",
+          "example": "Some text"
+        },
+        "file": {
+          "type": "string",
+          "example": "Some text"
+        },
+        "courseId": {
+          "type": "string",
+          "example": "5e8b2adb9e2aeb0024bf7627"
+        },
+        "free": {
+          "type": "boolean",
+          "example": false,
+          "default": false
+        },
+        "status": {
+          "type": "integer",
+          "example": 1,
+          "enum": [1, 2],
+          "description":"1 - Draft, 2 - Published"
+        }
+      }
+    },
+    {
+      "$ref": "time.json"
+    }
+  ]
+}

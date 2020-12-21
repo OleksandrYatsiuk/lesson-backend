@@ -1,0 +1,5 @@
+{
+  "type": "string",
+  "enum": ["1 - public", "2 - projectManager", " 3 - administrator"],
+  "example": "administrator"
+}

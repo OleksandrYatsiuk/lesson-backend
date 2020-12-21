@@ -1,5 +1,6 @@
+import * as mongoose from 'mongoose';
 
-export interface IStudyProgress  {
+export interface IStudyProgress extends mongoose.Document {
     readonly _id: string;
     userId: string;
     lessonId: string;

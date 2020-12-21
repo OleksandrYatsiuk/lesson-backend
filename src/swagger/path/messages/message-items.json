@@ -1,0 +1,157 @@
+{
+  "get": {
+    "summary": "Show List of Lessons",
+    "security": [],
+    "tags": ["Messages"],
+    "operationId": "messagesList",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "limit",
+        "description": "The number of items returned.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "default": null
+        }
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "description": "The number of page",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": null
+        }
+      },
+      {
+        "in": "query",
+        "name": "lessonId",
+        "description": "Filter be lesson Id",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "in": "query",
+        "name": "chat_id",
+        "description": "Filter be Telegram Chat Id",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../../schemas/messages.json"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "401 Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "post": {
+    "summary": "Create Message",
+    "description": "Allowed roles: Administrator",
+    "tags": ["Messages"],
+    "operationId": "createMessage",
+    "responses": {
+      "201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status201.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "$ref": "../../schemas/messages.json"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "401 Unauthorized",
+        "content": {
+          "appication/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "403 Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status403.json"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status422.json"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../../schemas/messages.json"
+          }
+        }
+      }
+    }
+  }
+}

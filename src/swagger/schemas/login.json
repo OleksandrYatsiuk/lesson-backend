@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "example": "techadmin"
+    },
+    "password": {
+      "type": "string",
+      "example": "Test123!"
+    }
+  },
+  "required": ["username", "password"]
+}

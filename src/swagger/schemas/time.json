@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "createdAt": {
+      "type": "integer",
+      "example": 1586365947,
+      "readOnly": true
+    },
+    "updatedAt": {
+      "type": "integer",
+      "example": 1586365947,
+      "readOnly": true
+    }
+  }
+}

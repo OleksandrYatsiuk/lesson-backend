@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "description": "API Practical Legal Courses",
+    "version": "1.0.0",
+    "title": "Practical Legal Courses"
+  },
+  "servers": [
+    {
+      "url": "{certificate}://{api_url}/api/v1",
+      "variables": {
+        "certificate": {
+          "enum": ["https", "http"],
+          "default": "http"
+        },
+        "api_url": {
+          "enum": ["lesson-backend.herokuapp.com", "localhost:5000"],
+          "default": "localhost:5000"
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "AnyBody"
+    },
+    {
+      "name": "User"
+    },
+    {
+      "name": "UserManagement"
+    },
+    {
+      "name": "Courses"
+    },
+    {
+      "name": "Lessons"
+    },
+    {
+      "name": "Messages"
+    },
+    {
+      "name": "Pages"
+    },
+    {
+      "name": "Study-Progress"
+    },
+    {
+      "name": "Payments"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "$ref": "./path/any-body/login-item.json"
+    },
+    "/auth/register": {
+      "$ref": "./path/any-body/register-item.json"
+    },
+    "/auth/resend-verify-email": {
+      "$ref": "./path/any-body/resend-verify-email.json"
+    },
+    "/auth/confirm/{token}": {
+      "$ref": "./path/any-body/confirm-email.json"
+    },
+    "/users": {
+      "$ref": "./path/user/current-item.json"
+    },
+    "/users/start": {
+      "$ref": "./path/user/current-item.json"
+    },
+    "/users/current": {
+      "$ref": "./path/user/current-item.json"
+    },
+    "/users/register": {
+      "$ref": "./path/user/update-item.json"
+    },
+    "/users/user": {
+      "$ref": "./path/user/update-location-item.json"
+    },
+    "/users/{id}": {
+      "$ref": "./path/user/logout-item.json"
+    },
+    "/courses": {
+      "$ref": "./path/courses/courses-items.json"
+    },
+    "/courses/{id}": {
+      "$ref": "./path/courses/courses-item.json"
+    },
+    "/lessons": {
+      "$ref": "./path/lessons/lessons-items.json"
+    },
+    "/lessons/{id}": {
+      "$ref": "./path/lessons/lessons-item.json"
+    },
+    "/messages": {
+      "$ref": "./path/messages/message-items.json"
+    },
+    "/messages/{id}": {
+      "$ref": "./path/messages/message-item.json"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "description": "",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": ""
+      }
+    },
+    "schemas": {
+      "responseModel": {
+        "$ref": "./schemas/responseModel.json"
+      },
+      "status200": {
+        "$ref": "./schemas/status200.json"
+      },
+      "status200DataProvider": {
+        "$ref": "./schemas/status200DataProvider.json"
+      },
+      "status201": {
+        "$ref": "./schemas/status201.json"
+      },
+      "status204": {
+        "$ref": "./schemas/status204.json"
+      },
+      "status401": {
+        "$ref": "./schemas/status401.json"
+      },
+      "status403": {
+        "$ref": "./schemas/status403.json"
+      },
+      "status404": {
+        "$ref": "./schemas/status404.json"
+      },
+      "status422": {
+        "$ref": "./schemas/status422.json"
+      },
+      "courses": {
+        "$ref": "./schemas/courses.json"
+      }
+    }
+  }
+}

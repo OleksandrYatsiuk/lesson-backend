@@ -1,0 +1,250 @@
+{
+  "get": {
+    "summary": "Show Pizzas List",
+    "security": [],
+    "tags": [
+      "Pizza"
+    ],
+    "operationId": "pizzaList",
+    "parameters": [
+      {
+        "in": "query",
+        "name": "limit",
+        "description": "The number of items returned.",
+        "required": false,
+        "example": "20",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 20
+        }
+      },
+      {
+        "in": "query",
+        "name": "page",
+        "description": "The number of page.",
+        "required": false,
+        "example": 1,
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      },
+      {
+        "in": "query",
+        "name": "sort",
+        "description": "Sort ordering. You can use sort=[-]fieldName as parameter in Url",
+        "required": false,
+        "schema": {
+          "enum": [
+            "name",
+            "-name",
+            "category",
+            "createdAt",
+            "-createdAt",
+            "updatedAt",
+            "-updatedAt",
+            "weight.small",
+            "-weight.small",
+            "price.low",
+            "-price.low"
+          ]
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "$ref": "../../schemas/pizza.json"
+                          },
+                          {
+                            "$ref": "../../schemas/time.json"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  "post": {
+    "summary": "Create Pizza",
+    "description": "Allowed roles: Administrator, Project Manager",
+    "tags": [
+      "Pizza"
+    ],
+    "operationId": "createPizza",
+    "responses": {
+      "201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status201.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "allOf": [
+                        {
+                          "$ref": "../../schemas/pizza.json"
+                        },
+                        {
+                          "$ref": "../../schemas/time.json"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "403 Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status403.json"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status422.json"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Пепероні Блюз"
+              },
+              "category": {
+                "type": "string",
+                "example": "Класичні",
+                "enum": [
+                  "Краща ціна",
+                  "Класичні",
+                  "Фірмові",
+                  "Легенди",
+                  "Преміум"
+                ]
+              },
+              "ingredients": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "example": "5e8b2adb9e2aeb0024bf7627"
+                }
+              },
+              "weight": {
+                "type": "object",
+                "properties": {
+                  "small": {
+                    "type": "number",
+                    "example": 200
+                  },
+                  "middle": {
+                    "type": "number",
+                    "example": 345
+                  },
+                  "big": {
+                    "type": "number",
+                    "example": 675.5
+                  }
+                }
+              },
+              "price": {
+                "type": "object",
+                "properties": {
+                  "small": {
+                    "type": "number",
+                    "example": 99.99
+                  },
+                  "middle": {
+                    "type": "number",
+                    "example": 129.99
+                  },
+                  "big": {
+                    "type": "number",
+                    "example": 200.99
+                  }
+                }
+              },
+              "image": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "required": [
+              "name",
+              "category",
+              "ingredients",
+              "weight",
+              "price"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

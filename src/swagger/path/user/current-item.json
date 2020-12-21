@@ -1,0 +1,49 @@
+{
+    "get": {
+        "summary": "Get Current User",
+        "tags": [
+            "User"
+        ],
+        "operationId": "userOverview",
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "../../schemas/status200.json"
+                                },
+                                {
+                                    "properties": {
+                                        "result": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "../../schemas/user.json"
+                                                },
+                                                {
+                                                    "$ref": "../../schemas/time.json"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "../../schemas/status401.json"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

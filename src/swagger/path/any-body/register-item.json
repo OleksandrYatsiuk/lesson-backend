@@ -1,0 +1,63 @@
+{
+    "post": {
+        "security": [],
+        "summary": "Create new user",
+        "tags": [
+            "AnyBody"
+        ],
+        "operationId": "userRegistration",
+        "responses": {
+            "201": {
+                "description": "Created",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "../../schemas/status201.json"
+                                },
+                                {
+                                    "properties": {
+                                        "result": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "../../schemas/user.json"
+                                                },
+                                                {
+                                                    "$ref": "../../schemas/time.json"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "422": {
+                "description": "Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "../../schemas/status422.json"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "../../schemas/register.json"
+                    }
+                }
+            }
+        }
+    }
+}

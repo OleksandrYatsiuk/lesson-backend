@@ -1,5 +1,6 @@
+import * as mongoose from 'mongoose';
 
-export interface Certificate {
+export interface Certificate extends mongoose.Document {
     readonly _id: string;
     userId: string;
     courseId: string;

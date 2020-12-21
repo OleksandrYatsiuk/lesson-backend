@@ -1,0 +1,95 @@
+{
+  "put": {
+    "summary": "Update User Role",
+    "description": "Allowed roles: Administrator",
+    "tags": ["UserManagement"],
+    "operationId": "updateRole",
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "description": "User id",
+        "required": true,
+        "schema": {
+          "$ref": "../../schemas/id.json"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "../../schemas/status200.json"
+                },
+                {
+                  "properties": {
+                    "result": {
+                      "type": "object",
+                      "allOf": [
+                        {
+                          "$ref": "../../schemas/user.json"
+                        },
+                        {
+                          "$ref": "../../schemas/time.json"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status401.json"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status403.json"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../schemas/status404.json"
+            }
+          }
+        }
+      }
+    },
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "$ref": "../../schemas/roles.json"
+              }
+            },
+            "required": ["role"]
+          }
+        }
+      }
+    }
+  }
+}
