@@ -19,7 +19,7 @@ export default class App {
 			console.log(`App running on http://${process.env.API_URL}:${this.port}`);
 			require('./telegram-bot');
 			setInterval(() => {
-				this._http.courseList()
+				this._http.pushBot()
 					.then(() => console.log('push bot'))
 					.catch((e) => console.log(e));
 			}, 28 * 60 * 1000);

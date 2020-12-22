@@ -26,6 +26,9 @@ export class ApiHelperService {
     public sendMessage(body: CustomMessage): Promise<CustomMessage> {
         return axios.post(`${this._apiUrl}/messages`, body).then(response => response.data.result)
     }
+    public pushBot(): Promise<any> {
+        return axios.get('https://plc-bot-telegram.herokuapp.com');
+    }
 
 
 }
