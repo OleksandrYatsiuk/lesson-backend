@@ -3,8 +3,5 @@ import 'dotenv/config';
 
 
 
-const app = new App(
-	+process.env.PORT,
-	'/v1'
-);
+const app = new App(+process.env.PORT,'/v1');
 app.listen();

@@ -1,11 +1,10 @@
-import * as mongoose from 'mongoose';
 
-export interface IStaticPages extends mongoose.Document {
+export interface IStaticPages {
     id: string;
     type: EStaticPages;
     content: string;
-    createdAt:number;
-    updatedAt:number;
+    createdAt: number;
+    updatedAt: number;
 }
 export enum EStaticPages {
     privacyPolicy = 1,

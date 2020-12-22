@@ -1,6 +1,8 @@
 import * as express from 'express';
+import { ApiHelperService } from './request-helper';
 export default class App {
 	public app: express.Application;
+	public _http: ApiHelperService = new ApiHelperService(process.env.BACKEND_URL);
 	public port: number
 	public version: string;
 	public host: string;
@@ -15,6 +17,12 @@ export default class App {
 	public listen() {
 		this.app.listen(this.port, () => {
 			console.log(`App running on http://${process.env.API_URL}:${this.port}`);
+			require('./telegram-bot');
+			setInterval(() => {
+				this._http.courseList()
+					.then(() => console.log('push bot'))
+					.catch((e) => console.log(e));
+			}, 28 * 60 * 1000);
 		});
 	}
 }

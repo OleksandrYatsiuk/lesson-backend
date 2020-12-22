@@ -1,6 +1,5 @@
-import * as mongoose from 'mongoose';
 
-export interface Course extends mongoose.Document {
+export interface Course {
     readonly id: string;
     name: string;
     status?: ECourseStatus;
@@ -9,7 +8,7 @@ export interface Course extends mongoose.Document {
     createdAt: number;
     updatedAt: number;
 }
-export interface Lesson extends mongoose.Document {
+export interface Lesson {
     readonly id: string,
     name: string,
     context?: string;
