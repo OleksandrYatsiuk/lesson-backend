@@ -15,6 +15,9 @@ export default class App {
 
 
 	public listen() {
+		this.app.get('/', function (req, res) {
+			res.send('hello world')
+		})
 		this.app.listen(this.port, () => {
 			console.log(`App running on http://${process.env.API_URL}:${this.port}`);
 			require('./telegram-bot');
@@ -22,7 +25,7 @@ export default class App {
 				this._http.pushBot()
 					.then(() => console.log('push bot'))
 					.catch((e) => console.log(e));
-			}, 28 * 60 * 1000);
+			}, 20 * 60 * 1000);
 		});
 	}
 }
