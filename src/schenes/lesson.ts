@@ -26,7 +26,7 @@ courses_lesson.enter((ctx: SceneContextMessageUpdate & { session: any }) => {
         ctx.session.data['lesson'] = lessonId;
         backend.lessonDetail(lessonId, ctx.chat.id)
             .then(lesson => {
-                ctx.replyWithHTML(lesson.context, Extra.HTML().markup((m) =>
+                ctx.replyWithHTML(lesson?.name, Extra.HTML().markup((m) =>
                     m.inlineKeyboard([
                         m.callbackButton('Надати відповідь', 'next'),
                         m.urlButton('Перейти на деталі заняття', `${process.env.FRONTEND_URL}/homework/lessons/${lessonId}?chat_id=${ctx.chat.id}`)
