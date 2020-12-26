@@ -1,3 +1,4 @@
+import { payments } from './schenes/payments';
 import Telegraf from 'telegraf';
 import { Markup, Extra, Stage, session } from 'telegraf';
 import { TelegrafContext } from 'telegraf/typings/context';
@@ -6,8 +7,13 @@ import { ApiHelperService } from './request-helper';
 import { courses_lesson } from './schenes/lesson';
 import { about, result } from './storage/texts';
 export const bot = new Telegraf(process.env.BOT_TOKEN);
+
+
 const backend = new ApiHelperService(process.env.BACKEND_URL)
 
+bot.catch((err, ctx) => {
+    console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
+})
 bot.telegram.deleteWebhook()
     .then(success => {
         success && console.log('🤖 is listening to your commands');
@@ -25,7 +31,7 @@ bot.start((ctx: TelegrafContext & { startPayload: string }) => {
         .keyboard([
             ['🔍 Про нас', '👨‍🎓 Курси'],
             ['☸ Результати', '📞 Контакти'],
-            ['💰 Оплата'],
+            ['💰 Оплата']
         ])
         .oneTime()
         .resize()
@@ -48,18 +54,19 @@ bot.hears('👨‍🎓 Курси', (ctx: TelegrafContext) => {
 })
 
 bot.hears('💰 Оплата', (ctx: TelegrafContext) => {
-    return ctx.reply('Practical Legal Courses – школа нового формату',
-        Extra.HTML().markup((m) =>
+    backend.courseList().then(courses => {
+        return ctx.reply('Виберіть курс', Extra.HTML().markup((m) =>
             m.inlineKeyboard([
-                m.urlButton('Оплатити', `${process.env.FRONTEND_URL}/payment?chat_id=${ctx.chat.id}&courseId=1`),
-            ])))
+                courses.map(course => m.callbackButton(course.name, `payments:${course.id}`))
+            ])));
+    })
 });
 
 bot.hears('📞 Контакти', (ctx): Promise<Message> => {
-    return ctx.replyWithMarkdown(`Open: [Contacts](${process.env.FRONTEND_URL})`);
+    return ctx.replyWithMarkdown(`Open: [Контакти](${process.env.FRONTEND_URL})`);
 })
 
-const stage = new Stage([courses_lesson]);
+const stage = new Stage([courses_lesson, payments]);
 
 bot.use(session());
 bot.use(stage.middleware());
@@ -69,3 +76,8 @@ bot.use(stage.middleware());
 bot.action(/course/, (ctx: any) => {
     return ctx.scene.enter('lessons');
 });
+bot.action(/payments/, (ctx: any) => {
+    console.log(ctx)
+    return ctx.scene.enter('payments');
+});
+bot.launch();
