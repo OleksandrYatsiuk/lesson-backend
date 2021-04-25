@@ -15,10 +15,11 @@ courses_lesson.enter((ctx: SceneContextMessageUpdate & { session: any }) => {
 
     backend.lessonList({ courseId })
         .then(lessons => {
+
             ctx.reply('Виберіть  урок', Extra.HTML().markup((m) =>
-                m.inlineKeyboard([
-                    lessons.map(lesson => m.callbackButton(lesson.name, `lesson:${lesson.id}`))
-                ])))
+                m.inlineKeyboard(
+                    lessons.map(lesson => [m.callbackButton(lesson.name, `lesson:${lesson.id}`)]),
+                )))
         })
 
     courses_lesson.action(/lesson:/, (ctx: SceneContextMessageUpdate & { session: any }) => {
@@ -48,7 +49,7 @@ courses_lesson.enter((ctx: SceneContextMessageUpdate & { session: any }) => {
         backend.getUser(ctx.chat.id).then(user => {
             ctx.session.data.userId = user.id;
             ctx.reply('Ви можете вписати результати нижче:', Markup
-                .keyboard([['Завершити',]])
+                .keyboard([['Завершити']])
                 .oneTime()
                 .resize()
                 .extra())
